@@ -414,7 +414,7 @@ def generate_index_html():
         for pid, data in run.get("per_page", {}).items():
             if pid not in all_page_results:
                 all_page_results[pid] = {"counts": []}
-            all_page_results[pid]["counts"].append(len([a for a in data.get("actual", []) if a.get("found", False)]))
+            all_page_results[pid]["counts"].append(len(data.get("actual", [])))
 
     per_page = {}
     for pid, info in sorted(all_page_results.items()):
@@ -428,7 +428,7 @@ def generate_index_html():
     latest = runs[-1]
     date = latest.get("date", "N/A")
 
-    all_counts = [len([a for a in d["actual"] if a.get("found", False)]) for d in latest.get("per_page", {}).values()]
+    all_counts = [info["latest_count"] for info in per_page.values()]
     pages_zero = sum(1 for c in all_counts if c == 0)
     pages_hard = sum(1 for c in all_counts if c >= 4)
     max_v = max(all_counts) if all_counts else 0
