@@ -3,22 +3,16 @@
 **Page URL:** `pages/page_116.html`
 **Run Date:** 2026-10-29
 **Total Expected Violations:** 0
-**Total Detected Violations:** 16
+**Total Detected Violations:** 13
 
 ## Summary
-- Expected: 0 | Detected: 16 | Coverage: 1600%
+- Expected: 0 | Detected: 13 | Coverage: 1300%
 
 ## Expected Violations
 
 
 ## Detected Violations
 
-- **color-no-contrast** (WCAG ['1.4.3', '1.4.6'])
-  - Selector: \.contrast-red-on-red
-- **color-no-contrast** (WCAG ['1.4.3', '1.4.6'])
-  - Selector: \.contrast-gray-on-white
-- **color-red-green** (WCAG ['1.4.1'])
-  - Selector: \.color-pill
 - **link-placeholder** (WCAG ['2.4.4'])
   - Selector: link-placeholder
 - **link-placeholder** (WCAG ['2.4.4'])
@@ -48,9 +42,6 @@
 
 ## Fixes
 
-- [color-no-contrast] Increase text contrast ratio to 7:1 minimum; use dark text on light backgrounds or vice versa.
-- [color-no-contrast] Increase text contrast ratio to 7:1 minimum; use dark text on light backgrounds or vice versa.
-- [color-red-green] Add text labels or icons alongside color indicators.
 - [link-placeholder] Replace 'click here' with descriptive link text like 'Learn more about X'.
 - [link-placeholder] Replace 'click here' with descriptive link text like 'Learn more about X'.
 - [link-empty-href] Remove href='#' or use a real URL.
