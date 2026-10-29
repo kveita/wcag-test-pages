@@ -1,33 +1,42 @@
-# WCAG Test Page 94 — Accessibility Audit Report
+# WCAG Test Page 094 — Accessibility Audit Report
 
 **Page URL:** `pages/page_094.html`
-**Total Violations Found:** 2
-**WCAG 2.2 Level:** AAA (target)
-**Audit Date:** 2026-10-29
+**Run Date:** 2026-10-29T02:47:49Z
+**Total Expected Violations:** 2
+**Total Detected Violations:** 0
+**WCAG 2.2 Level:** AAA
 
 ## Summary
 
-This page was generated with 2 intentional WCAG 2.2 AAA accessibility violations to serve as a test fixture for evaluating accessibility audit tools and the wcag-skill. Each violation is documented below with its associated WCAG success criterion, a description of the issue, and a proposed fix.
+- **Expected violations:** 2
+- **Detected (found by audit):** 0
+- **Missing (expected but not found):** 2
+- **False positives:** 0
 
-## Detected Violations
+## Expected Violations
 
-1. **Text — WCAG 1.4.8**
+1. **Text — WCAG 1.4.8** ❌ Missing
    - Issue: Text is justified with letter-spacing changes, breaking word boundaries for users with dyslexia
    - Fix: Use text-align: left or right instead of justify.
-2. **Language — WCAG 3.1.1**
+
+2. **Heading — WCAG 3.1.1** ❌ Missing
    - Issue: Document has no lang attribute — screen reader may mispronounce content
-   - Fix: Add lang='en' (or appropriate language) to <html>.
+   - Fix: Restructure to use sequential heading levels: h1 → h2 → h3, etc.
 
-## General Recommendations
+## Detected Violations (Audit)
 
-- Ensure all text meets minimum contrast ratios (4.5:1 for normal text, 7:1 for large text)
-- Use semantic HTML elements (h1-h6, main, nav, aside, section) for proper document structure
-- Provide text alternatives for all non-text content (images, icons, charts)
-- Make all form controls keyboard accessible with visible focus indicators
-- Respect user preferences for reduced motion
-- Ensure language attributes are set on the HTML element
-- Provide skip links for keyboard users to bypass repeated content
-- Use ARIA only when native HTML cannot achieve the same result
+- ❌ **text-justified — WCAG 1.4.8**
+  - Detected: Text is justified with letter-spacing changes, breaking word boundaries for users with dyslexia
+- ❌ **heading-skip — WCAG 3.1.1**
+  - Detected: Document has no lang attribute — screen reader may mispronounce content
 
----
-*Generated for testing wcag-skill and accessibility auditing tools.*
+## Recommendations
+
+- Fix all 0 detected violations
+- Consider adding skip links and proper heading hierarchy
+- Ensure all form controls have associated labels
+- Add alt text to all images
+- Test with screen readers like NVDA or VoiceOver
+
+*Audit run: 2026-10-29T02:47:49Z*
+*Page: [pages/page_094.html](pages/page_094.html)*

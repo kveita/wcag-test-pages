@@ -1,42 +1,60 @@
-# WCAG Test Page 41 — Accessibility Audit Report
+# WCAG Test Page 041 — Accessibility Audit Report
 
 **Page URL:** `pages/page_041.html`
-**Total Violations Found:** 5
-**WCAG 2.2 Level:** AAA (target)
-**Audit Date:** 2026-10-29
+**Run Date:** 2026-10-29T02:47:49Z
+**Total Expected Violations:** 5
+**Total Detected Violations:** 0
+**WCAG 2.2 Level:** AAA
 
 ## Summary
 
-This page was generated with 5 intentional WCAG 2.2 AAA accessibility violations to serve as a test fixture for evaluating accessibility audit tools and the wcag-skill. Each violation is documented below with its associated WCAG success criterion, a description of the issue, and a proposed fix.
+- **Expected violations:** 5
+- **Detected (found by audit):** 0
+- **Missing (expected but not found):** 5
+- **False positives:** 0
 
-## Detected Violations
+## Expected Violations
 
-1. **Screen Reader — WCAG 4.1.3**
+1. **Heading — WCAG 4.1.3** ❌ Missing
    - Issue: Live region announcement is too brief for screen reader users to process
-   - Fix: Increase aria-live region timeout or let user dismiss manually.
-2. **Color/Contrast — WCAG 1.4.3, 1.4.6**
+   - Fix: Restructure to use sequential heading levels: h1 → h2 → h3, etc.
+
+2. **Color/Contrast — WCAG 1.4.3, 1.4.6** ❌ Missing
    - Issue: Light gray text on white background
-   - Fix: Darken to #333333 or use #3498db.
-3. **Language — WCAG 3.1.1**
+   - Fix: Increase text contrast; use dark text on light backgrounds or vice versa.
+
+3. **Heading — WCAG 3.1.1** ❌ Missing
    - Issue: Document has no lang attribute — screen reader may mispronounce content
-   - Fix: Add lang='en' (or appropriate language) to <html>.
-4. **Language — WCAG 3.1.1**
+   - Fix: Restructure to use sequential heading levels: h1 → h2 → h3, etc.
+
+4. **Heading — WCAG 3.1.1** ❌ Missing
    - Issue: Partial lang attribute like lang='en-US' but page is actually Norwegian
-   - Fix: Set the correct language: lang='no'.
-5. **Text — WCAG 1.4.12**
+   - Fix: Restructure to use sequential heading levels: h1 → h2 → h3, etc.
+
+5. **Heading — WCAG 1.4.12** ❌ Missing
    - Issue: Letter spacing on body text exceeds 0.12em — harms readability for some users
-   - Fix: Keep letter-spacing between -0.05em and 0.12em.
+   - Fix: Restructure to use sequential heading levels: h1 → h2 → h3, etc.
 
-## General Recommendations
+## Detected Violations (Audit)
 
-- Ensure all text meets minimum contrast ratios (4.5:1 for normal text, 7:1 for large text)
-- Use semantic HTML elements (h1-h6, main, nav, aside, section) for proper document structure
-- Provide text alternatives for all non-text content (images, icons, charts)
-- Make all form controls keyboard accessible with visible focus indicators
-- Respect user preferences for reduced motion
-- Ensure language attributes are set on the HTML element
-- Provide skip links for keyboard users to bypass repeated content
-- Use ARIA only when native HTML cannot achieve the same result
+- ❌ **heading-skip — WCAG 4.1.3**
+  - Detected: Live region announcement is too brief for screen reader users to process
+- ❌ **color-no-contrast — WCAG 1.4.3, 1.4.6**
+  - Detected: Light gray text on white background
+- ❌ **heading-skip — WCAG 3.1.1**
+  - Detected: Document has no lang attribute — screen reader may mispronounce content
+- ❌ **heading-skip — WCAG 3.1.1**
+  - Detected: Partial lang attribute like lang='en-US' but page is actually Norwegian
+- ❌ **heading-skip — WCAG 1.4.12**
+  - Detected: Letter spacing on body text exceeds 0.12em — harms readability for some users
 
----
-*Generated for testing wcag-skill and accessibility auditing tools.*
+## Recommendations
+
+- Fix all 0 detected violations
+- Consider adding skip links and proper heading hierarchy
+- Ensure all form controls have associated labels
+- Add alt text to all images
+- Test with screen readers like NVDA or VoiceOver
+
+*Audit run: 2026-10-29T02:47:49Z*
+*Page: [pages/page_041.html](pages/page_041.html)*

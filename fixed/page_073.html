@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>WCAG Test Page 73</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.5;
+            color: #e91e63;
+            background-color: #ffffff;
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        /* Common bad patterns embedded in each page */
+        /* L1: Color contrast violations */
+        
+        
+        
+        /* L2: Color-only info */
+        
+        
+        .color-pill.neutral { background-color: #666666; }
+        .color-pill.go { background-color: #2ecc71; }
+        .color-pill.stop { background-color: #e74c3c; }
+        /* L3: Image issues */
+        
+        /* L4: Link issues */
+        
+        
+        /* L5: Form issues */
+        
+        
+        
+        /* L6: Heading issues */
+        h1 { font-size: 28px; margin: 20px 0 10px; }
+        h2 { font-size: 22px; margin: 15px 0 10px; }
+        h3 { font-size: 18px; margin: 15px 0 10px; }
+        /* L7: Table issues */
+        table { border-collapse: collapse; width: 100%; margin: 15px 0; }
+        th, td { border: 1px solid #999; padding: 8px; text-align: left; }
+        th { background-color: #e8e8e8; }
+        /* L8: Reduced motion violations */
+        @keyframes flash {
+            0%, 100% { background-color: #e74c3c; }
+            50% { background-color: #3498db; }
+        }
+        .motion-flash { background-color: #e74c3c; animation: flash 0.3s infinite; }
+        @keyframes parallax {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .motion-parallax {
+            height: 400px;
+            overflow: hidden;
+            background-image: linear-gradient(to bottom, #e74c3c, #3498db, #2ecc71);
+            animation: parallax 2s ease-in-out infinite alternate;
+        }
+        /* L9: Font size / line-height issues */
+        .small-text { font-size: 11px; color: #666666; }
+        .tight-text { line-height: 1; color: #333333; }
+        .justified-text { text-align: justify; line-height: 1.6; }
+        .spaced-text { letter-spacing: 0.15em; }
+        /* L10: Table layout violations */
+        table.layout-fixed { table-layout: fixed; }
+        table.layout-fixed td { overflow: hidden; text-overflow: ellipsis; }
+        /* ARIA tests */
+        [role="alert"] { border: 2px solid #e91e63; padding: 10px; margin: 10px 0; }
+        [role="status"] { margin: 10px 0; }
+        /* Skip link area */
+        .skip-link {
+            position: absolute;
+            top: -100px;
+            left: 10px;
+            background: #2c3e50;
+            color: #fff;
+            padding: 5px 10px;
+            z-index: 100;
+        }
+        .skip-link:focus {
+            top: 0;
+        }
+        /* Focus styles - some pages have invisible focus */
+        a:focus, button:focus, input:focus { outline: none; }
+        a:focus { text-decoration: underline; }
+        button:focus { background-color: #333333; }
+        input:focus { border-color: #333333; }
+        /* Keyboard trap for modal scenarios */
+        
+    </style>
+</head>
+<body>
+
+    <!-- Skip link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a><main id="main-content">
+
+    <!-- Test page content designed to trigger multiple violations -->
+
+    <h1>WCAG Test Page 73</h1>
+    <p>This page is designed to test various WCAG 2.2 AAA accessibility violations. It should be audited with automated tools and manual testing tools to identify accessibility issues.</p>
+    <p>Content on this page includes the following test elements arranged to expose common accessibility barriers.</p>
+
+    
+    <section aria-labelledby="color-section">
+        <h2 id="color-section">Color & Contrast Tests</h2>
+        <div class="contrast-red-on-red" tabindex="0">
+            Red text on red background (#e74c3c on #e74c3c) - no perceivable text
+        </div>
+        <div class="contrast-gray-on-white">
+            Gray text (#a0a0a0) on white background — fails 4.5:1 contrast ratio
+        </div>
+        <div class="contrast-light-gray-on-white">
+            Light gray text on white — visually unreadable
+        </div>
+    </section>
+
+    
+    <section aria-labelledby="color-only-section">
+        <h2 id="color-only-section">Color-Only Information</h2>
+        <p>Traffic light status indicators below use only color to convey meaning:</p>
+        <div class="color-only" role="list" aria-label="Status indicators">
+            <div class="color-pill neutral" role="listitem">Neutral — proceed with caution</div>
+            <div class="color-pill go" role="listitem">Go — proceed normally</div>
+            <div class="color-pill stop" role="listitem">Stop — do not proceed</div>
+        </div>
+        <p>Accessibility test: Can you identify these indicators without color?</p>
+    </section>
+
+    
+    <section aria-labelledby="image-section">
+        <h2 id="image-section">Image Accessibility Tests</h2>
+        <div class="img-issue">
+            <img src="https://picsum.photos/seed/test1/400/300" alt="" width="400" height="300">
+            <p>Decorative image with empty alt (should be silent to screen readers)</p>
+        </div>
+        <div class="img-issue">
+            <img src="https://picsum.photos/seed/test2/400/300" alt="" width="400" height="300" aria-label="">
+            <p>Image with empty alt AND empty aria-label — double empty</p>
+        </div>
+        <div class="img-issue">
+            <img src="https://picsum.photos/seed/test3/400/300" alt="image" width="400" height="300">
+            <p>Image with meaningless alt='image' — not helpful for screen reader users</p>
+        </div>
+        <div class="img-issue">
+            <img src="https://picsum.photos/seed/test4/400/300" alt="sunset over mountains with a river" width="400" height="300">
+            <p>Image with alt text — this one passes (descriptive text is provided)</p>
+        </div>
+        <p>Background image test: <a href="#">View the landscape background</a></p>
+    </section>
+
+    
+    <section aria-labelledby="link-section">
+        <h2 id="link-section">Link Accessibility Tests</h2>
+        <p>Link tests and navigation issues:</p>
+        <div>
+            <a href="#">Read more about our services</a> — link without useful text
+        </div>
+        <div>
+            <a href="#" class="link-placeholder">click here to continue</a> — placeholder text, not descriptive
+        </div>
+        <div>
+            <a href="#">learn more</a> — generic link text
+        </div>
+        <div>
+            <a href="#" aria-label="Read more">Read more</a> — redundant label
+        </div>
+        <div>
+            <a href="javascript:void(0)">trigger script</a> — href with no real destination
+        </div>
+        <p>Navigation: <a href="#">Home</a> | <a href="#">About</a> | <a href="#">Contact</a></p>
+    </section>
+
+    
+    <section aria-labelledby="form-section">
+        <h2 id="form-section">Form Accessibility Tests</h2>
+        <p>Form field tests and accessible labeling:</p>
+        <form class="form-issue">
+            <label for="username">Username (properly labeled)</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username">
+        </form>
+        <form class="form-issue">
+            <p>Email (no visible label):</p>
+            <input type="email" name="email" placeholder="enter your email">
+        </form>
+        <form class="form-issue">
+            <p>Password (labeled by placeholder only):</p>
+            <input type="password" name="password" placeholder="your password">
+        </form>
+        <form class="form-issue">
+            <label for="error-message">Error input (label mis-linked):</label>
+            <input type="text" id="wrong-field" name="wrong-field" placeholder="wrong field name">
+            <span style="color: #e74c3c;">This field is required</span>
+            <span style="color: #e74c3c;">Error shown only by color</span>
+        </form>
+        <button>Submit form</button>
+    </section>
+
+    
+    <section aria-labelledby="heading-section">
+        <h2 id="heading-section">Heading Structure Tests</h2>
+        <p>Test various heading hierarchy violations:</p>
+        <div>
+            <h2>This is an h2 with content</h2>
+            <h4>Then h4 appears without a preceding h3 — heading skip</h4>
+            <h2>More content with an h2</h2>
+            <p style="font-weight: bold;">A paragraph styled as bold looks like a heading but isn't one — this is a heading level violation</p>
+        </div>
+        <p>Appropriate heading: <h3>This is a properly structured h3</h3></p>
+    </section>
+
+    
+    <section aria-labelledby="table-section">
+        <h2 id="table-section">Table Structure Tests</h2>
+        <p>Tests for table heading, scope, and layout issues:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Item A</td>
+                    <td>$10</td>
+                    <td>Active</td>
+                </tr>
+                <tr>
+                    <td>Item B</td>
+                    <td>$25</td>
+                    <td>Inactive</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="layout-fixed">
+            <caption>Fixed-width table test</caption>
+            <thead>
+                <tr>
+                    <th>Column 1</th>
+                    <th>Column 2</th>
+                    <th>Column 3</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Data 1</td>
+                    <td>Data 2</td>
+                    <td>Data 3</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    
+    <section aria-labelledby="motion-section">
+        <h2 id="motion-section">Motion & Animation Tests</h2>
+        <p>Tests for animation and motion preferences:</p>
+        <div class="motion-flash" style="padding: 20px;">
+            Flashing background colors (3s cycle) — potential seizure risk if content moves or flashes > 3 times/sec
+        </div>
+        <div class="motion-parallax">Parallax scrolling background animation</div>
+        <p>Animated GIF test: <img src="https://picsum.photos/seed/animated1/400/200" alt="animated content"></p>
+        <p>Animated image that auto-plays without user control</p>
+    </section>
+
+    
+    <section aria-labelledby="text-section">
+        <h2 id="text-section">Text & Typography Tests</h2>
+        <p>Tests for text size, line height, spacing, and justification:</p>
+        <p class="small-text">This is 11px text in #666 — contrast ratio 3.8:1, below the 4.5:1 minimum for normal text (AAA).</p>
+        <p class="tight-text">This text has line-height: 1 — too tight to read comfortably.</p>
+        <p class="justified-text">This text is justified. Justified text with letter-spacing changes may produce inconsistent word boundaries, making it harder to read for users with dyslexia. Proven reading difficulties (1.4.8): do not use justified text.</p>
+        <p class="spaced-text">This text has letter-spacing: 0.15em — exceeding the 0.12em threshold recommended for body text.</p>
+    </section>
+
+    
+    <section aria-labelledby="layout-section">
+        <h2 id="layout-section">Layout & Scaling Tests</h2>
+        <p>Tests for fixed-width layouts and zoom prevention:</p>
+        <div style="max-width: 700px; margin: 0 auto; border: 2px solid #e91e63; padding: 10px;">
+            Fixed-width container at 700px — may break when user zooms to 200%
+        </div>
+        <p>Viewport meta test: meta name='viewport' content='width=device-width, initial-scale=1.0' (user-scalable would block zoom)</p>
+        <p>Focus trap test: <button onclick="alert('trap')" class="keyboard-trap" tabindex="0" onkeydown="if(event.key=='Tab') return">Trap candidate (focus stays here)</button></p>
+    </section>
+
+    <!-- ARIA Live Region Tests -->
+    <section aria-labelledby="aria-section">
+        <h2 id="aria-section">ARIA & Screen Reader Tests</h2>
+        <p>Dynamic content and live region tests:</p>
+        <div role="status" aria-live="polite">
+            <p>Status: Page loaded successfully</p>
+        </div>
+        <div role="alert">
+            <p>Alert: System status update available — this is announced</p>
+        </div>
+        <div role="alert" aria-hidden="true">
+            <p>Alert: This message has aria-hidden='true' — screen readers will not announce it</p>
+        </div>
+        <div aria-label="decorative widget" role="img" tabindex="-1">
+            <span style="font-size: 30px;">📊</span>
+            <p>Icon-only element with role='img' but no aria-label</p>
+        </div>
+    </section>
+
+    <!-- Media Tests -->
+    <section aria-labelledby="media-section">
+        <h2 id="media-section">Media Tests</h2>
+        <p>Tests for media captions, transcripts, and audio descriptions:</p>
+        <video controls width="400">
+            <source src="https://sample-videos.com/video321/mp4/720/big_buck_bunny_720p_10mb.mp4" type="video/mp4">
+            Your browser does not support video playback. Autoplay test: video may auto-play without user request.
+        </video>
+        <audio autoplay controls>
+            <source src="https://sample-videos.com/audio11/mp3/7/big_buck_bunny_7mb.mp3" type="audio/mpeg">
+            Audio test: autoplayed without user interaction request
+        </audio>
+        <p>Audio description for image: <img src="https://picsum.photos/seed/description/600/400" alt="City skyline at dusk"> with alt text (description)</p>
+    </section>
+
+    <!-- Screen Reader Text Tests -->
+    <section aria-labelledby="sr-section">
+        <h2 id="sr-section">Screen Reader Specific Tests</h2>
+        <p>Tests for content order, live regions, and reading order:</p>
+        <p>Tab navigation order test: tab through elements in sequence</p>
+        <div style="display: none;">hidden content that should not be read by screen readers</div>
+        <p style="font-size: 12px; color: #888;">Very small text test — 12px in #888 on #fff background</p>
+        <div style="background-color: #e74c3c; color: #e74c3c; height: 20px;">Invisible text test</div>
+    </section>
+
+    <!-- Conclusion -->
+    <footer style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #cccccc;">
+        <p><small>WCAG Test Page 73 — Generated for testing purposes</small></p>
+    </footer>
+
+    <!-- Inline JSON data for automated testing -->
+    <script>
+        window.__wcag_test_page = {
+            "page_number": 73,
+            "violations": [{"type": "Table", "desc": "Table uses layout= attribute or CSS that breaks column headers association", "wcag": ['1.3.1'], "fix": "Use proper <thead> <th> elements for data tables."}, {"type": "Image", "desc": "Decorative image with empty alt but aria-label also empty — screen readers announce nothing", "wcag": ['1.1.1'], "fix": "Add empty alt='' (alt empty string for decorative)."}, {"type": "Heading", "desc": "h2 appears directly after h1 without an h1 first, or heading hierarchy is non-sequential", "wcag": ['1.3.1', '2.4.6'], "fix": "Restructure headings so each h2 is preceded by an h1 and levels increment by one."}, {"type": "Table", "desc": "Table has width='100%' and content is squished, breaking readability", "wcag": ['1.4.10'], "fix": "Remove fixed width or allow content wrapping."}, {"type": "Text", "desc": "Line-height is set to 1.0 or 1 — tight line spacing reduces readability", "wcag": ['1.4.12'], "fix": "Set line-height to at least 1.5."}],
+            "primary_color": "#e91e63",
+            "bg_color": "#ffffff"
+        };
+    </script>
+</body>
+</html>

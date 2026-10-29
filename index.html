@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WCAG Test Pages — Audit Dashboard</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6;color:#333;background:#f5f7fa;padding:40px 20px;max-width:1200px;margin:0 auto}
+h1{font-size:2.2em;margin-bottom:8px}
+h2{font-size:1.5em;margin:30px 0 15px;padding-bottom:8px;border-bottom:2px solid #3498db}
+.summary-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:30px}
+.card{background:#fff;border-radius:10px;padding:20px;box-shadow:0 2px 6px rgba(0,0,0,.08);text-align:center}
+.card .value{font-size:2.5em;font-weight:700;color:#3498db;line-height:1.2}
+.card .label{color:#666;font-size:.9em;margin-top:4px}
+.chart-container{background:#fff;border-radius:10px;padding:20px;box-shadow:0 2px 6px rgba(0,0,0,.08);margin-bottom:30px}
+.chart-container canvas{max-height:400px}
+table{width:100%;border-collapse:collapse;margin-bottom:30px;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+th{background:#3498db;color:#fff;padding:12px 16px;text-align:left;font-weight:600}
+td{padding:10px 16px;border-bottom:1px solid #eee}
+tr:hover{background:#f8f9fa}
+.badge{display:inline-block;padding:4px 10px;border-radius:12px;font-size:.85em;font-weight:600;margin:2px}
+.badge-pass{background:#d4edda;color:#155724}
+.badge-fail{background:#f8d7da;color:#721c24}
+.badge-warn{background:#fff3cd;color:#856404}
+footer{text-align:center;color:#888;padding:20px 0;font-size:.9em}
+a{color:#3498db;text-decoration:none}
+a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+
+<h1>🧪 WCAG Test Pages — Audit Dashboard</h1>
+<p>Accessibility audit results for <strong>100</strong> test pages.
+Audited on <strong>2026-10-29T02:47:49Z</strong>.</p>
+
+<div class="summary-cards">
+  <div class="card"><div class="value">100</div><div class="label">Pages with 0 Violations</div></div>
+  <div class="card"><div class="value">0</div><div class="label">Pages with 4+ Violations</div></div>
+  <div class="card"><div class="value">0</div><div class="label">Max Violations (Single Page)</div></div>
+  <div class="card"><div class="value">0.0</div><div class="label">Avg Violations Per Page</div></div>
+</div>
+
+<h2>📊 Total Violations Over Iterations</h2>
+<div class="chart-container"><canvas id="iterationChart"></canvas></div>
+
+<h2>📊 Violations by WCAG Success Criterion (Latest Run)</h2>
+<div class="chart-container"><canvas id="wcagChart"></canvas></div>
+
+<h2>📊 Violations by Type (Latest Run)</h2>
+<div class="chart-container"><canvas id="typeChart"></canvas></div>
+
+<h2>📈 Per-Page Improvement Over Iterations</h2>
+<div class="chart-container"><canvas id="improvementChart"></canvas></div>
+
+<h2>📄 Individual Page Results</h2>
+<table>
+  <thead><tr><th>Page</th><th>001</th><th>025</th><th>050</th><th>075</th><th>100</th><th>Latest</th><th>Fixed</th><th>Status</th></tr></thead>
+  <tbody>  <tr><td>page_001.html</td><td>0</td><td>—</td><td>—</td><td>—</td><td>—</td><td>0</td><td>🔧</td><td><span class="badge badge-pass">✅ Clean</span></td></tr>
+  <tr><td>page_002.html</td><td>0</td><td>—</td><td>—</td><td>—</td><td>—</td><td>0</td><td>🔧</td><td><span class="badge badge-pass">✅ Clean</span></td></tr>
+  <tr><td>page_003.html</td><td>0</td><td>—</td><td>—</td><td>—</td><td>—</td><td>0</td><td>🔧</td><td><span class="badge badge-pass">✅ Clean</span></td></tr>
+  <tr><td>page_004.html</td><td>0</td><td>—</td><td>—</td><td>—</td><td>—</td><td>0</td><td>🔧</td><td><span class="badge badge-pass">✅ Clean</span></td></tr>
+  <tr><td>page_005.html</td><td>0</td><td>—</td><td>—</td><td>—</td><td>—</td><td>0</td><td>🔧</td><td><span class="badge badge-pass">✅ Clean</span></td></tr>
+  <tr><td>page_006.html</td><td>0</td><td>—</td><td>—</td><td>—</td><td>—</td><td>0</td><td>🔧</td><td><span class="badge badge-pass">✅ Clean</span></td></tr>
+  <tr><td>page_007.html</td><td>0</td><td>—</td><td>—</td><td>—</td><td>—</td><td>0</td><td>🔧</td><td><span class="badge badge-pass">✅ Clean</span></td></tr>
+  <tr><td>page_008.html</td><td>0</td><td>—</td><td>—</td><td>—</td><td>—</td><td>0</td><td>🔧</td><td><span class="badge badge-pass">✅ Clean</span></td></tr>
+  <tr><td>page_009.html</td><td>0</td><td>—</td><td>—</td><td>—</td><td>—</td><td>0</td><td>🔧</td><td><span class="badge badge-pass">✅ Clean</span></td></tr>
+  <tr><td>page_010.html</td><td>0</td><td>—</td><td>—</td><td>—</td><td>—</td><td>0</td><td>🔧</td><td><span class="badge badge-pass">✅ Clean</span></td></tr>
+  <tr><td>page_011.html</td><td>0</td><td>—</td><td>—</td><td>—</td><td>—</td><td>0</td><td>🔧</td><td><span class="badge badge-pass">✅ Clean</span></td></tr>
+  <tr><td>page_012.html</td><td>0</td><td>—</td><td>—</td><td>—</td><td>—</td><td>0</td><td>🔧</td><td><span class="badge badge-pass">✅ Clean</span></td></tr>
+  <tr><td>page_013.html</td><td>0</td><td>—</td><td>—</td><td>—</td><td>—</td><td>0</td><td>🔧</td><td><span class="badge badge-pass">✅ Clean</span></td></tr>
+  <tr><td>page_014.html</td><td>0</td><td>—</td><td>—</td><td>—</td><td>—</td><td>0</td><td>🔧</td><td><span class="badge badge-pass">✅ Clean</span></td></tr>
+  <tr><td>page_015.html</td><td>0</td><td>—</td><td>—</td><td>—</td><td>—</td><td>0</td><td>🔧</td><td><span class="badge badge-pass">✅ Clean</span></td></tr>
+  <tr><td>page_016.html</td><td>0</td><td>—</td><td>—</td><td>—</td><td>—</td><td>0</td><td>🔧</td><td><span class="badge badge-pass">✅ Clean</span></td></tr>
+  <tr><td>page_017.html</td><td>0</td><td>—</td><td>—</td><td>—</td><td>—</td><td>0</td><td>🔧</td><td><span class="badge badge-pass">✅ Clean</span></td></tr>
+  <tr><td>page_018.html</td><td>0</td><td>—</td><td>—</td><td>—</td><td>—</td><td>0</td><td>🔧</td><td><span class="badge badge-pass">✅ Clean</span></td></tr>
+  <tr><td>page_019.html</td><td>0</td><td>—</td><td>—</td><td>—</td><td>—</td><td>0</td><td>🔧</td><td><span class="badge badge-pass">✅ Clean</span></td></tr>
+  <tr><td>page_020.html</td><td>0</td><td>—</td><td>—</td><td>—</td><td>—</td><td>0</td><td>🔧</td><td><span class="badge badge-pass">✅ Clean</span></td></tr>
+  </tbody></table>
+<footer><p>Generated by <a href="https://github.com/turbolego/wcag-skill">wcag-skill</a> · <a href="https://github.com/kveita/wcag-test-pages">kveita/wcag-test-pages</a></p></footer>
+<script>
+const iterDates = ["2026-10-29T02:44:54Z", "2026-10-29T02:47:10Z", "2026-10-29T02:47:49Z"];
+const iterData = [0, 0, 0];
+const wcagLabels = ["Contrast", "Contrast AAA", "Color-Only", "Image/Label", "Form Label", "Justify", "Table Layout", "Text Spacing", "Link Purpose", "Keyboard", "Touch Target", "Heading/Table", "Language", "ARIA Live", "Focus Visible", "Focus Trap", "Autoplay", "Motion", "Captions", "Zoom"];
+const wcagColors = ["#e74c3c", "#e67e22", "#f1c40f", "#2ecc71", "#1abc9c", "#3498db", "#9b59b6", "#e91e63", "#00bcd4", "#ff5722", "#673ab7", "#8bc34a", "#ff9800", "#4caf50", "#795548", "#e74c3c", "#e67e22", "#f1c40f", "#2ecc71", "#1abc9c"];
+const typeCounts = {"Color/Contrast": 0, "Color-Only": 0, "Image": 0, "Link": 0, "Form": 0, "Heading": 0, "Table": 0, "Motion": 0, "Text": 0, "Layout": 0, "Keyboard": 0, "ARIA": 0, "Language": 0, "Scrolling": 0, "Media": 0, "Screen Reader": 0};
+const allTypeNames = ["Color/Contrast", "Color-Only", "Image", "Link", "Form", "Heading", "Table", "Motion", "Text", "Layout", "Keyboard", "ARIA", "Language", "Scrolling", "Media", "Screen Reader"];
+const pageLabels = ["page_001", "page_002", "page_003", "page_004", "page_005", "page_006", "page_007", "page_008", "page_009", "page_010", "page_011", "page_012", "page_013", "page_014", "page_015"];
+const pageIterData = [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]];
+
+new Chart(document.getElementById('iterationChart'),{
+  type:'line',
+  data:{{
+    labels:iterDates.map(d=>d.split('T')[0]),
+    datasets:[{{
+      label:'Total Violations',
+      data:iterData,
+      borderColor:'#e74c3c',
+      backgroundColor:'rgba(231,76,60,0.1)',
+      tension:.3,
+      fill:true
+    }}]
+  }},
+  options:{{
+    responsive:true,
+    plugins:{{
+      legend:{display:false},
+      tooltip:{callbacks:{{label:ctx=>`Total: ${{ctx.parsed.y}} violations`}}}}
+    }},
+    scales:{{
+      y:{beginAtZero:true,ticks:{stepSize:5},title:{display:true,text:'Total Violations'}}}
+    }}
+  }}
+}});
+
+new Chart(document.getElementById('wcagChart'),{
+  type:'bar',
+  data:{{
+    labels:wcagLabels.filter((v,i)=>typeCounts[Object.keys(typeCounts)[i]]>0),
+    datasets:[{{
+      label:'Count',
+      data:wcagLabels.filter((v,i)=>typeCounts[Object.keys(typeCounts)[i]]>0).map((_,i)=>Object.values(typeCounts)[i]),
+      backgroundColor:wcagColors,
+      borderWidth:1
+    }}]
+  }},
+  options:{{
+    responsive:true,
+    maintainAspectRatio:false,
+    plugins:{{
+      legend:{display:false},
+      tooltip:{callbacks:{{label:ctx=>`${{ctx.parsed.y}} pages`}}}}
+    }},
+    scales:{{
+      y:{beginAtZero:true,ticks:{stepSize:1},title:{display:true,text:'Number of Pages'}}}
+    }}
+  }}
+}});
+
+new Chart(document.getElementById('typeChart'),{
+  type:'bar',
+  data:{{
+    labels:allTypeNames.filter(t=>typeCounts[t]>0),
+    datasets:[{{
+      label:'Count',
+      data:allTypeNames.filter(t=>typeCounts[t]>0).map(t=>typeCounts[t]),
+      backgroundColor:allTypeNames.filter(t=>typeCounts[t]>0).map((_,i)=>wcagColors[i%15]),
+      borderWidth:1
+    }}]
+  }},
+  options:{{
+    responsive:true,
+    maintainAspectRatio:false,
+    plugins:{{
+      legend:{display:false},
+      tooltip:{callbacks:{{label:ctx=>`${{ctx.parsed.y}} pages`}}}}
+    }},
+    scales:{{
+      y:{beginAtZero:true,ticks:{stepSize:1},title:{display:true,text:'Number of Pages'}}}
+    }}
+  }}
+}});
+
+new Chart(document.getElementById('improvementChart'),{
+  type:'line',
+  data:{{
+    labels:iterDates.map(d=>d.split('T')[0]),
+    datasets:pageIterData.map((counts,i)=>({{
+      label:pageLabels[i],
+      data:counts,
+      borderColor:wcagColors[i%15],
+      tension:.3,
+      pointRadius:2
+    }}))
+  }},
+  options:{{
+    responsive:true,
+    maintainAspectRatio:false,
+    plugins:{{
+      legend:{display:true,position:'top'},
+      tooltip:{callbacks:{{label:ctx=>`${{ctx.dataset.label}}: ${{ctx.parsed.y}} violations`}}}}
+    }},
+    scales:{{
+      x:{ticks:{maxRotation:90,minRotation:45,font:{size:10}}},
+      y:{beginAtZero:true,ticks:{stepSize:1},title:{display:true,text:'Violations'}}}
+    }}
+  }}
+}});
+</script></body></html>

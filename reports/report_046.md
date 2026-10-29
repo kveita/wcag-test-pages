@@ -1,39 +1,54 @@
-# WCAG Test Page 46 — Accessibility Audit Report
+# WCAG Test Page 046 — Accessibility Audit Report
 
 **Page URL:** `pages/page_046.html`
-**Total Violations Found:** 4
-**WCAG 2.2 Level:** AAA (target)
-**Audit Date:** 2026-10-29
+**Run Date:** 2026-10-29T02:47:49Z
+**Total Expected Violations:** 4
+**Total Detected Violations:** 0
+**WCAG 2.2 Level:** AAA
 
 ## Summary
 
-This page was generated with 4 intentional WCAG 2.2 AAA accessibility violations to serve as a test fixture for evaluating accessibility audit tools and the wcag-skill. Each violation is documented below with its associated WCAG success criterion, a description of the issue, and a proposed fix.
+- **Expected violations:** 4
+- **Detected (found by audit):** 0
+- **Missing (expected but not found):** 4
+- **False positives:** 0
 
-## Detected Violations
+## Expected Violations
 
-1. **Script — WCAG 2.1.1**
+1. **Heading — WCAG 2.1.1** ❌ Missing
    - Issue: JavaScript widget responds to click but not to keyboard Enter/Space
-   - Fix: Add keydown handler for Enter and Space keys.
-2. **ARIA — WCAG 4.1.3**
+   - Fix: Restructure to use sequential heading levels: h1 → h2 → h3, etc.
+
+2. **ARIA — WCAG 4.1.3** ❌ Missing
    - Issue: aria-live region updates but total announcements exceed live region limits without wrapping
-   - Fix: Use aria-busy='true' on parent and manage updates with live regions properly.
-3. **Screen Reader — WCAG 1.1.1**
+   - Fix: Remove aria-hidden from the live region container.
+
+3. **Form — WCAG 1.1.1** ❌ Missing
    - Issue: Element has role='img' but contains only decorative text, no aria-label
-   - Fix: Remove role='img' or add an accessible name.
-4. **Text — WCAG 1.4.12**
+   - Fix: Add <label for='input-id'>Label text</label> or aria-label='Label'.
+
+4. **Heading — WCAG 1.4.12** ❌ Missing
    - Issue: Letter spacing on body text exceeds 0.12em — harms readability for some users
-   - Fix: Keep letter-spacing between -0.05em and 0.12em.
+   - Fix: Restructure to use sequential heading levels: h1 → h2 → h3, etc.
 
-## General Recommendations
+## Detected Violations (Audit)
 
-- Ensure all text meets minimum contrast ratios (4.5:1 for normal text, 7:1 for large text)
-- Use semantic HTML elements (h1-h6, main, nav, aside, section) for proper document structure
-- Provide text alternatives for all non-text content (images, icons, charts)
-- Make all form controls keyboard accessible with visible focus indicators
-- Respect user preferences for reduced motion
-- Ensure language attributes are set on the HTML element
-- Provide skip links for keyboard users to bypass repeated content
-- Use ARIA only when native HTML cannot achieve the same result
+- ❌ **heading-skip — WCAG 2.1.1**
+  - Detected: JavaScript widget responds to click but not to keyboard Enter/Space
+- ❌ **aria-hidden-live — WCAG 4.1.3**
+  - Detected: aria-live region updates but total announcements exceed live region limits without wrapping
+- ❌ **form-label-missing — WCAG 1.1.1**
+  - Detected: Element has role='img' but contains only decorative text, no aria-label
+- ❌ **heading-skip — WCAG 1.4.12**
+  - Detected: Letter spacing on body text exceeds 0.12em — harms readability for some users
 
----
-*Generated for testing wcag-skill and accessibility auditing tools.*
+## Recommendations
+
+- Fix all 0 detected violations
+- Consider adding skip links and proper heading hierarchy
+- Ensure all form controls have associated labels
+- Add alt text to all images
+- Test with screen readers like NVDA or VoiceOver
+
+*Audit run: 2026-10-29T02:47:49Z*
+*Page: [pages/page_046.html](pages/page_046.html)*

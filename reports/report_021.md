@@ -1,36 +1,48 @@
-# WCAG Test Page 21 — Accessibility Audit Report
+# WCAG Test Page 021 — Accessibility Audit Report
 
 **Page URL:** `pages/page_021.html`
-**Total Violations Found:** 3
-**WCAG 2.2 Level:** AAA (target)
-**Audit Date:** 2026-10-29
+**Run Date:** 2026-10-29T02:47:49Z
+**Total Expected Violations:** 3
+**Total Detected Violations:** 0
+**WCAG 2.2 Level:** AAA
 
 ## Summary
 
-This page was generated with 3 intentional WCAG 2.2 AAA accessibility violations to serve as a test fixture for evaluating accessibility audit tools and the wcag-skill. Each violation is documented below with its associated WCAG success criterion, a description of the issue, and a proposed fix.
+- **Expected violations:** 3
+- **Detected (found by audit):** 0
+- **Missing (expected but not found):** 3
+- **False positives:** 0
 
-## Detected Violations
+## Expected Violations
 
-1. **Layout — WCAG 1.4.4**
+1. **Heading — WCAG 1.4.4** ❌ Missing
    - Issue: Browser zoom is disabled via CSS @media or viewport meta prevents zoom
-   - Fix: Remove user-scalable=no or minimum-scale 1.0.
-2. **ARIA — WCAG 4.1.3**
+   - Fix: Restructure to use sequential heading levels: h1 → h2 → h3, etc.
+
+2. **ARIA — WCAG 4.1.3** ❌ Missing
    - Issue: aria-live region updates but total announcements exceed live region limits without wrapping
-   - Fix: Use aria-busy='true' on parent and manage updates with live regions properly.
-3. **Language — WCAG 3.1.1**
+   - Fix: Remove aria-hidden from the live region container.
+
+3. **Heading — WCAG 3.1.1** ❌ Missing
    - Issue: Partial lang attribute like lang='en-US' but page is actually Norwegian
-   - Fix: Set the correct language: lang='no'.
+   - Fix: Restructure to use sequential heading levels: h1 → h2 → h3, etc.
 
-## General Recommendations
+## Detected Violations (Audit)
 
-- Ensure all text meets minimum contrast ratios (4.5:1 for normal text, 7:1 for large text)
-- Use semantic HTML elements (h1-h6, main, nav, aside, section) for proper document structure
-- Provide text alternatives for all non-text content (images, icons, charts)
-- Make all form controls keyboard accessible with visible focus indicators
-- Respect user preferences for reduced motion
-- Ensure language attributes are set on the HTML element
-- Provide skip links for keyboard users to bypass repeated content
-- Use ARIA only when native HTML cannot achieve the same result
+- ❌ **heading-skip — WCAG 1.4.4**
+  - Detected: Browser zoom is disabled via CSS @media or viewport meta prevents zoom
+- ❌ **aria-hidden-live — WCAG 4.1.3**
+  - Detected: aria-live region updates but total announcements exceed live region limits without wrapping
+- ❌ **heading-skip — WCAG 3.1.1**
+  - Detected: Partial lang attribute like lang='en-US' but page is actually Norwegian
 
----
-*Generated for testing wcag-skill and accessibility auditing tools.*
+## Recommendations
+
+- Fix all 0 detected violations
+- Consider adding skip links and proper heading hierarchy
+- Ensure all form controls have associated labels
+- Add alt text to all images
+- Test with screen readers like NVDA or VoiceOver
+
+*Audit run: 2026-10-29T02:47:49Z*
+*Page: [pages/page_021.html](pages/page_021.html)*

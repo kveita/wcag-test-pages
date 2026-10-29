@@ -1,39 +1,54 @@
-# WCAG Test Page 84 — Accessibility Audit Report
+# WCAG Test Page 084 — Accessibility Audit Report
 
 **Page URL:** `pages/page_084.html`
-**Total Violations Found:** 4
-**WCAG 2.2 Level:** AAA (target)
-**Audit Date:** 2026-10-29
+**Run Date:** 2026-10-29T02:47:49Z
+**Total Expected Violations:** 4
+**Total Detected Violations:** 0
+**WCAG 2.2 Level:** AAA
 
 ## Summary
 
-This page was generated with 4 intentional WCAG 2.2 AAA accessibility violations to serve as a test fixture for evaluating accessibility audit tools and the wcag-skill. Each violation is documented below with its associated WCAG success criterion, a description of the issue, and a proposed fix.
+- **Expected violations:** 4
+- **Detected (found by audit):** 0
+- **Missing (expected but not found):** 4
+- **False positives:** 0
 
-## Detected Violations
+## Expected Violations
 
-1. **Link — WCAG 2.4.4, 1.1.1**
+1. **Image — WCAG 2.4.4, 1.1.1** ❌ Missing
    - Issue: Link with only an image icon, but the image has no accessible name
-   - Fix: Add aria-label='Read more about spring gardening'.
-2. **Language — WCAG 3.1.1**
+   - Fix: Provide descriptive alt text: alt="A clear description of the image".
+
+2. **Heading — WCAG 3.1.1** ❌ Missing
    - Issue: Partial lang attribute like lang='en-US' but page is actually Norwegian
-   - Fix: Set the correct language: lang='no'.
-3. **Color-Only — WCAG 1.4.1**
+   - Fix: Restructure to use sequential heading levels: h1 → h2 → h3, etc.
+
+3. **Form — WCAG 1.4.1** ❌ Missing
    - Issue: Action buttons use only red vs green to distinguish, no icon or text label
-   - Fix: Add text labels like 'Delete'/'Save' or icons alongside colors.
-4. **Screen Reader — WCAG 1.3.2**
+   - Fix: Add <label for='input-id'>Label text</label> or aria-label='Label'.
+
+4. **Heading — WCAG 1.3.2** ❌ Missing
    - Issue: Content order in HTML is different from visual order — screen reader reads in wrong order
-   - Fix: Reorder DOM elements so focus order matches visual reading order.
+   - Fix: Restructure to use sequential heading levels: h1 → h2 → h3, etc.
 
-## General Recommendations
+## Detected Violations (Audit)
 
-- Ensure all text meets minimum contrast ratios (4.5:1 for normal text, 7:1 for large text)
-- Use semantic HTML elements (h1-h6, main, nav, aside, section) for proper document structure
-- Provide text alternatives for all non-text content (images, icons, charts)
-- Make all form controls keyboard accessible with visible focus indicators
-- Respect user preferences for reduced motion
-- Ensure language attributes are set on the HTML element
-- Provide skip links for keyboard users to bypass repeated content
-- Use ARIA only when native HTML cannot achieve the same result
+- ❌ **img-no-alt-description — WCAG 2.4.4, 1.1.1**
+  - Detected: Link with only an image icon, but the image has no accessible name
+- ❌ **heading-skip — WCAG 3.1.1**
+  - Detected: Partial lang attribute like lang='en-US' but page is actually Norwegian
+- ❌ **form-label-missing — WCAG 1.4.1**
+  - Detected: Action buttons use only red vs green to distinguish, no icon or text label
+- ❌ **heading-skip — WCAG 1.3.2**
+  - Detected: Content order in HTML is different from visual order — screen reader reads in wrong order
 
----
-*Generated for testing wcag-skill and accessibility auditing tools.*
+## Recommendations
+
+- Fix all 0 detected violations
+- Consider adding skip links and proper heading hierarchy
+- Ensure all form controls have associated labels
+- Add alt text to all images
+- Test with screen readers like NVDA or VoiceOver
+
+*Audit run: 2026-10-29T02:47:49Z*
+*Page: [pages/page_084.html](pages/page_084.html)*

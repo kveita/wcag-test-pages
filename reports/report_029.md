@@ -1,42 +1,60 @@
-# WCAG Test Page 29 — Accessibility Audit Report
+# WCAG Test Page 029 — Accessibility Audit Report
 
 **Page URL:** `pages/page_029.html`
-**Total Violations Found:** 5
-**WCAG 2.2 Level:** AAA (target)
-**Audit Date:** 2026-10-29
+**Run Date:** 2026-10-29T02:47:49Z
+**Total Expected Violations:** 5
+**Total Detected Violations:** 0
+**WCAG 2.2 Level:** AAA
 
 ## Summary
 
-This page was generated with 5 intentional WCAG 2.2 AAA accessibility violations to serve as a test fixture for evaluating accessibility audit tools and the wcag-skill. Each violation is documented below with its associated WCAG success criterion, a description of the issue, and a proposed fix.
+- **Expected violations:** 5
+- **Detected (found by audit):** 0
+- **Missing (expected but not found):** 5
+- **False positives:** 0
 
-## Detected Violations
+## Expected Violations
 
-1. **Motion — WCAG 2.3.1**
+1. **Color/Contrast — WCAG 2.3.1** ❌ Missing
    - Issue: Page flashes content rapidly (flashing colors) at frequencies > 2 Hz, risk of seizure
-   - Fix: Remove the flash pattern or slow it to < 2 Hz.
-2. **Form — WCAG 1.1.1, 4.1.2**
+   - Fix: Increase text contrast; use dark text on light backgrounds or vice versa.
+
+2. **Form — WCAG 1.1.1, 4.1.2** ❌ Missing
    - Issue: Input placeholder replaces label — fails when placeholders are styled away
-   - Fix: Add visible label element alongside placeholder.
-3. **Media — WCAG 1.2.2, 1.2.4**
+   - Fix: Add a visible label element in addition to the placeholder.
+
+3. **Heading — WCAG 1.2.2, 1.2.4** ❌ Missing
    - Issue: Video has no captions track and no transcript provided
-   - Fix: Add <track kind='captions'> or link to transcript page.
-4. **Script — WCAG 2.1.1**
+   - Fix: Restructure to use sequential heading levels: h1 → h2 → h3, etc.
+
+4. **Heading — WCAG 2.1.1** ❌ Missing
    - Issue: JavaScript widget responds to click but not to keyboard Enter/Space
-   - Fix: Add keydown handler for Enter and Space keys.
-5. **Scrolling — WCAG 2.1.1**
+   - Fix: Restructure to use sequential heading levels: h1 → h2 → h3, etc.
+
+5. **Scrolling — WCAG 2.1.1** ❌ Missing
    - Issue: Page contains horizontally scrolling content that cannot be scrolled via keyboard (scroll container with overflow-x but no keyboard scroll buttons)
-   - Fix: Ensure all scroll containers can be scrolled via keyboard.
+   - Fix: Ensure all scrollable areas can be scrolled via keyboard.
 
-## General Recommendations
+## Detected Violations (Audit)
 
-- Ensure all text meets minimum contrast ratios (4.5:1 for normal text, 7:1 for large text)
-- Use semantic HTML elements (h1-h6, main, nav, aside, section) for proper document structure
-- Provide text alternatives for all non-text content (images, icons, charts)
-- Make all form controls keyboard accessible with visible focus indicators
-- Respect user preferences for reduced motion
-- Ensure language attributes are set on the HTML element
-- Provide skip links for keyboard users to bypass repeated content
-- Use ARIA only when native HTML cannot achieve the same result
+- ❌ **color-no-contrast — WCAG 2.3.1**
+  - Detected: Page flashes content rapidly (flashing colors) at frequencies > 2 Hz, risk of seizure
+- ❌ **form-placeholder-only — WCAG 1.1.1, 4.1.2**
+  - Detected: Input placeholder replaces label — fails when placeholders are styled away
+- ❌ **heading-skip — WCAG 1.2.2, 1.2.4**
+  - Detected: Video has no captions track and no transcript provided
+- ❌ **heading-skip — WCAG 2.1.1**
+  - Detected: JavaScript widget responds to click but not to keyboard Enter/Space
+- ❌ **scroll-blocked — WCAG 2.1.1**
+  - Detected: Page contains horizontally scrolling content that cannot be scrolled via keyboard (scroll container with overflow-x but no keyboard scroll buttons)
 
----
-*Generated for testing wcag-skill and accessibility auditing tools.*
+## Recommendations
+
+- Fix all 0 detected violations
+- Consider adding skip links and proper heading hierarchy
+- Ensure all form controls have associated labels
+- Add alt text to all images
+- Test with screen readers like NVDA or VoiceOver
+
+*Audit run: 2026-10-29T02:47:49Z*
+*Page: [pages/page_029.html](pages/page_029.html)*

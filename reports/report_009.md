@@ -1,36 +1,48 @@
-# WCAG Test Page 9 — Accessibility Audit Report
+# WCAG Test Page 009 — Accessibility Audit Report
 
 **Page URL:** `pages/page_009.html`
-**Total Violations Found:** 3
-**WCAG 2.2 Level:** AAA (target)
-**Audit Date:** 2026-10-29
+**Run Date:** 2026-10-29T02:47:49Z
+**Total Expected Violations:** 3
+**Total Detected Violations:** 0
+**WCAG 2.2 Level:** AAA
 
 ## Summary
 
-This page was generated with 3 intentional WCAG 2.2 AAA accessibility violations to serve as a test fixture for evaluating accessibility audit tools and the wcag-skill. Each violation is documented below with its associated WCAG success criterion, a description of the issue, and a proposed fix.
+- **Expected violations:** 3
+- **Detected (found by audit):** 0
+- **Missing (expected but not found):** 3
+- **False positives:** 0
 
-## Detected Violations
+## Expected Violations
 
-1. **Text — WCAG 1.4.12**
+1. **Heading — WCAG 1.4.12** ❌ Missing
    - Issue: Letter spacing on body text exceeds 0.12em — harms readability for some users
-   - Fix: Keep letter-spacing between -0.05em and 0.12em.
-2. **Screen Reader — WCAG 1.3.2**
+   - Fix: Restructure to use sequential heading levels: h1 → h2 → h3, etc.
+
+2. **Heading — WCAG 1.3.2** ❌ Missing
    - Issue: Content order in HTML is different from visual order — screen reader reads in wrong order
-   - Fix: Reorder DOM elements so focus order matches visual reading order.
-3. **Text — WCAG 1.4.8**
+   - Fix: Restructure to use sequential heading levels: h1 → h2 → h3, etc.
+
+3. **Text — WCAG 1.4.8** ❌ Missing
    - Issue: Text is justified with letter-spacing changes, breaking word boundaries for users with dyslexia
    - Fix: Use text-align: left or right instead of justify.
 
-## General Recommendations
+## Detected Violations (Audit)
 
-- Ensure all text meets minimum contrast ratios (4.5:1 for normal text, 7:1 for large text)
-- Use semantic HTML elements (h1-h6, main, nav, aside, section) for proper document structure
-- Provide text alternatives for all non-text content (images, icons, charts)
-- Make all form controls keyboard accessible with visible focus indicators
-- Respect user preferences for reduced motion
-- Ensure language attributes are set on the HTML element
-- Provide skip links for keyboard users to bypass repeated content
-- Use ARIA only when native HTML cannot achieve the same result
+- ❌ **heading-skip — WCAG 1.4.12**
+  - Detected: Letter spacing on body text exceeds 0.12em — harms readability for some users
+- ❌ **heading-skip — WCAG 1.3.2**
+  - Detected: Content order in HTML is different from visual order — screen reader reads in wrong order
+- ❌ **text-justified — WCAG 1.4.8**
+  - Detected: Text is justified with letter-spacing changes, breaking word boundaries for users with dyslexia
 
----
-*Generated for testing wcag-skill and accessibility auditing tools.*
+## Recommendations
+
+- Fix all 0 detected violations
+- Consider adding skip links and proper heading hierarchy
+- Ensure all form controls have associated labels
+- Add alt text to all images
+- Test with screen readers like NVDA or VoiceOver
+
+*Audit run: 2026-10-29T02:47:49Z*
+*Page: [pages/page_009.html](pages/page_009.html)*
