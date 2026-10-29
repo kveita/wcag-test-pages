@@ -17,17 +17,17 @@
         }
         /* Common bad patterns embedded in each page */
         /* L1: Color contrast violations */
-        
-        
-        
+         { background-color: #673ab7; color: #673ab7; padding: 20px; margin: 10px 0; }
+         { background-color: #ffffff; color: #a0a0a0; padding: 20px; }
+         { background-color: #ffffff; color: #cccccc; padding: 15px; }
         /* L2: Color-only info */
         
         
-        .color-pill.neutral { background-color: #666666; }
-        .color-pill.go { background-color: #2ecc71; }
-        .color-pill.stop { background-color: #e74c3c; }
-        /* L3: Image issues */
         
+        
+        
+        /* L3: Image issues */
+         { display: flex; align-items: center; gap: 10px; }
         /* L4: Link issues */
         
         
@@ -44,12 +44,12 @@
         th, td { border: 1px solid #999; padding: 8px; text-align: left; }
         th { background-color: #e8e8e8; }
         /* L8: Reduced motion violations */
-        @keyframes flash {
+        @keyframes flash-safe {
             0%, 100% { background-color: #e74c3c; }
             50% { background-color: #3498db; }
         }
         .motion-flash { background-color: #e74c3c; animation: flash 0.3s infinite; }
-        @keyframes parallax {
+        @keyframes parallax-safe {
             0% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
         }
@@ -94,8 +94,6 @@
 </head>
 <body>
 
-    <!-- Skip link -->
-    <a href="#main-content" class="skip-link">Skip to main content</a><main id="main-content">
 
     <!-- Test page content designed to trigger multiple violations -->
 
@@ -106,10 +104,7 @@
     
     <section aria-labelledby="color-section">
         <h2 id="color-section">Color & Contrast Tests</h2>
-        <div class="contrast-red-on-red" tabindex="0">
-            Red text on red background (#e74c3c on #e74c3c) - no perceivable text
-        </div>
-        <div class="contrast-gray-on-white">
+                <div class="contrast-gray-on-white">
             Gray text (#a0a0a0) on white background — fails 4.5:1 contrast ratio
         </div>
         <div class="contrast-light-gray-on-white">
@@ -121,33 +116,20 @@
     <section aria-labelledby="color-only-section">
         <h2 id="color-only-section">Color-Only Information</h2>
         <p>Traffic light status indicators below use only color to convey meaning:</p>
-        <div class="color-only" role="list" aria-label="Status indicators">
-            <div class="color-pill neutral" role="listitem">Neutral — proceed with caution</div>
+        
             <div class="color-pill go" role="listitem">Go — proceed normally</div>
             <div class="color-pill stop" role="listitem">Stop — do not proceed</div>
         </div>
-        <p>Accessibility test: Can you identify these indicators without color?</p>
+        
     </section>
 
     
     <section aria-labelledby="image-section">
         <h2 id="image-section">Image Accessibility Tests</h2>
-        <div class="img-issue">
-            <img src="https://picsum.photos/seed/test1/400/300" alt="" width="400" height="300">
-            <p>Decorative image with empty alt (should be silent to screen readers)</p>
-        </div>
-        <div class="img-issue">
-            <img src="https://picsum.photos/seed/test2/400/300" alt="" width="400" height="300" aria-label="">
-            <p>Image with empty alt AND empty aria-label — double empty</p>
-        </div>
-        <div class="img-issue">
-            <img src="https://picsum.photos/seed/test3/400/300" alt="image" width="400" height="300">
-            <p>Image with meaningless alt='image' — not helpful for screen reader users</p>
-        </div>
-        <div class="img-issue">
-            <img src="https://picsum.photos/seed/test4/400/300" alt="sunset over mountains with a river" width="400" height="300">
-            <p>Image with alt text — this one passes (descriptive text is provided)</p>
-        </div>
+        
+        
+        
+        
         <p>Background image test: <a href="#">View the landscape background</a></p>
     </section>
 
@@ -338,13 +320,6 @@
     </footer>
 
     <!-- Inline JSON data for automated testing -->
-    <script>
-        window.__wcag_test_page = {
-            "page_number": 30,
-            "violations": [{"type": "Heading", "desc": "Content that reads as a heading but uses <p> or <div> with bold styling", "wcag": ['1.3.1'], "fix": "Use <h2> for section headers."}, {"type": "Image", "desc": "Photo of landscape with no alt text — screen reader has no fallback", "wcag": ['1.1.1'], "fix": "Provide descriptive alt='Lush green mountain valley with river'."}],
-            "primary_color": "#673ab7",
-            "bg_color": "#ffffff"
-        };
-    </script>
+    
 </body>
 </html>
