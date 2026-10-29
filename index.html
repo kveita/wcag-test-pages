@@ -4,108 +4,279 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WCAG Test Pages — Audit Dashboard</title>
+<link rel="stylesheet" href="app.css">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6;color:#333;background:#f5f7fa;padding:40px 20px;max-width:1200px;margin:0 auto}
-h1{font-size:2.2em;margin-bottom:8px}
-h2{font-size:1.5em;margin:30px 0 15px;padding-bottom:8px;border-bottom:2px solid #3498db}
-.summary-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:30px}
-.card{background:#fff;border-radius:10px;padding:20px;box-shadow:0 2px 6px rgba(0,0,0,.08);text-align:center}
-.card .value{font-size:2.5em;font-weight:700;color:#3498db;line-height:1.2}
-.card .label{color:#666;font-size:.9em;margin-top:4px}
-.chart-container{background:#fff;border-radius:10px;padding:20px;box-shadow:0 2px 6px rgba(0,0,0,.08);margin-bottom:30px}
-.chart-container canvas{max-height:400px}
-table{width:100%;border-collapse:collapse;margin-bottom:30px;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,.08)}
-th{background:#3498db;color:#fff;padding:12px 16px;text-align:left;font-weight:600}
-td{padding:10px 16px;border-bottom:1px solid #eee}
-tr:hover{background:#f8f9fa}
-.badge{display:inline-block;padding:4px 10px;border-radius:12px;font-size:.85em;font-weight:600;margin:2px}
-.badge-pass{background:#d4edda;color:#155724}
-.badge-fail{background:#f8d7da;color:#721c24}
-.badge-warn{background:#fff3cd;color:#856404}
-footer{text-align:center;color:#888;padding:20px 0;font-size:.9em}
-a{color:#3498db;text-decoration:none}
-a:hover{text-decoration:underline}
+  /* Dashboard-specific styles on top of taste-skill app.css */
+  .dashboard { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+  .dashboard h1 { font-size: 24px; font-weight: 600; margin-bottom: 8px; }
+  .dashboard p.desc { color: var(--muted, #5f6368); font-size: 14px; margin-bottom: 30px; }
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border, #e8e8e8);
+    border: 1px solid var(--border, #e8e8e8);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 30px;
+  }
+  .kpi {
+    background: var(--surface, #ffffff);
+    padding: 20px;
+  }
+  .kpi .value { font-size: 28px; font-weight: 700; color: var(--text, #111); line-height: 1.2; font-variant-numeric: tabular-nums; }
+  .kpi .label { color: var(--muted, #5f6368); font-size: 13px; margin-top: 4px; }
+  .panel {
+    background: var(--surface, #ffffff);
+    border: 1px solid var(--border, #e8e8e8);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  .panel h2 { font-size: 15px; font-weight: 600; color: var(--text, #111); margin-bottom: 16px; }
+  .chart-wrap { min-height: 200px; }
+  table.results { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.results th {
+    background: var(--raised, #f4f5f6);
+    color: var(--muted, #5f6368);
+    font-weight: 600;
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border, #e8e8e8);
+    font-size: 12px;
+  }
+  table.results td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--rule, #f1f2f3);
+    font-variant-numeric: tabular-nums;
+  }
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .badge-pass { background: var(--pill-positive-bg, #dcfae5); color: var(--pill-positive-ink, #04250e); }
+  .badge-fail { background: var(--pill-negative-bg, #ffedea); color: var(--pill-negative-ink, #831c1e); }
+  .badge-warn { background: var(--pill-warning-bg, #fffbeb); color: var(--pill-warning-ink, #92400e); }
+  footer { color: var(--faint, #6b6b6b); font-size: 13px; text-align: center; padding: 30px 0; }
+  footer a { color: var(--accent, #1f6f5c); }
 </style>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 </head>
 <body>
+<main class="dashboard">
 
-<h1>🧪 WCAG Test Pages — Audit Dashboard</h1>
-<p>Accessibility audit results for <strong>300</strong> test pages.
-Audited on <strong>2026-10-29T04:00:00Z</strong>.</p>
+<h1>WCAG Test Pages — Audit Dashboard</h1>
+<p class="desc">Accessibility audit results for 300 test pages. Audited via <a href="https://github.com/turbolego/wcag-skill">wcag-skill</a>.</p>
 
-<div class="summary-cards">
-  <div class="card"><div class="value">0</div><div class="label">Pages with 0 Violations</div></div>
-  <div class="card"><div class="value">300</div><div class="label">Pages with 4+ Violations</div></div>
-  <div class="card"><div class="value">26</div><div class="label">Max Violations (Single Page)</div></div>
-  <div class="card"><div class="value">19.3</div><div class="label">Avg Violations Per Page</div></div>
+<!-- KPI Row -->
+<div class="kpi-row">
+  <div class="kpi">
+    <div class="value" id="kpi-pages">300</div>
+    <div class="label">Total Pages</div>
+  </div>
+  <div class="kpi">
+    <div class="value" id="kpi-violations">5,800</div>
+    <div class="label">Total Violations</div>
+  </div>
+  <div class="kpi">
+    <div class="value" id="kpi-avg">19.3</div>
+    <div class="label">Avg per Page</div>
+  </div>
+  <div class="kpi">
+    <div class="value" id="kpi-fixed">300</div>
+    <div class="label">Pages Fixed</div>
+  </div>
 </div>
 
-<h2>📊 Total Violations Over Iterations</h2>
-<div class="chart-container"><canvas id="iterationChart"></canvas></div>
+<!-- Iteration Chart -->
+<div class="panel">
+  <h2>Total Violations Over Iterations</h2>
+  <div class="chart-wrap" id="iterationChart"></div>
+</div>
 
-<h2>📊 Violations by WCAG Success Criterion (Latest Run)</h2>
-<div class="chart-container"><canvas id="wcagChart"></canvas></div>
+<!-- Violations by WCAG Success Criterion -->
+<div class="panel">
+  <h2>Violations by WCAG Success Criterion (Latest Run)</h2>
+  <div class="chart-wrap" id="wcagChart"></div>
+</div>
 
-<h2>📊 Violations by Type (Latest Run)</h2>
-<div class="chart-container"><canvas id="typeChart"></canvas></div>
+<!-- Violations by Type -->
+<div class="panel">
+  <h2>Violations by Type (Latest Run)</h2>
+  <div class="chart-wrap" id="typeChart"></div>
+</div>
 
-<h2>📈 Per-Page Improvement Over Iterations</h2>
-<div class="chart-container"><canvas id="improvementChart"></canvas></div>
+<!-- Per-Page Improvement -->
+<div class="panel">
+  <h2>Per-Page Improvement Over Iterations (Top 15 Pages)</h2>
+  <div class="chart-wrap" id="improvementChart"></div>
+</div>
 
-<h2>📄 Individual Page Results</h2>
-<table>
-  <thead><tr><th>Page</th><th>001</th><th>025</th><th>050</th><th>075</th><th>100</th><th>Latest</th><th>Fixed</th><th>Status</th></tr></thead>
-  <tbody>  <tr><td>page_001.html</td><td>26</td><td>—</td><td>—</td><td>—</td><td>—</td><td>26</td><td>🔧</td><td><span class="badge badge-fail">❌ High</span></td></tr>
-  <tr><td>page_002.html</td><td>26</td><td>—</td><td>—</td><td>—</td><td>—</td><td>26</td><td>🔧</td><td><span class="badge badge-fail">❌ High</span></td></tr>
-  <tr><td>page_003.html</td><td>26</td><td>—</td><td>—</td><td>—</td><td>—</td><td>26</td><td>🔧</td><td><span class="badge badge-fail">❌ High</span></td></tr>
-  <tr><td>page_004.html</td><td>26</td><td>—</td><td>—</td><td>—</td><td>—</td><td>26</td><td>🔧</td><td><span class="badge badge-fail">❌ High</span></td></tr>
-  <tr><td>page_005.html</td><td>26</td><td>—</td><td>—</td><td>—</td><td>—</td><td>26</td><td>🔧</td><td><span class="badge badge-fail">❌ High</span></td></tr>
-  <tr><td>page_006.html</td><td>26</td><td>—</td><td>—</td><td>—</td><td>—</td><td>26</td><td>🔧</td><td><span class="badge badge-fail">❌ High</span></td></tr>
-  <tr><td>page_007.html</td><td>26</td><td>—</td><td>—</td><td>—</td><td>—</td><td>26</td><td>🔧</td><td><span class="badge badge-fail">❌ High</span></td></tr>
-  <tr><td>page_008.html</td><td>26</td><td>—</td><td>—</td><td>—</td><td>—</td><td>26</td><td>🔧</td><td><span class="badge badge-fail">❌ High</span></td></tr>
-  <tr><td>page_009.html</td><td>26</td><td>—</td><td>—</td><td>—</td><td>—</td><td>26</td><td>🔧</td><td><span class="badge badge-fail">❌ High</span></td></tr>
-  <tr><td>page_010.html</td><td>26</td><td>—</td><td>—</td><td>—</td><td>—</td><td>26</td><td>🔧</td><td><span class="badge badge-fail">❌ High</span></td></tr>
-  <tr><td>page_011.html</td><td>26</td><td>—</td><td>—</td><td>—</td><td>—</td><td>26</td><td>🔧</td><td><span class="badge badge-fail">❌ High</span></td></tr>
-  <tr><td>page_012.html</td><td>26</td><td>—</td><td>—</td><td>—</td><td>—</td><td>26</td><td>🔧</td><td><span class="badge badge-fail">❌ High</span></td></tr>
-  <tr><td>page_013.html</td><td>26</td><td>—</td><td>—</td><td>—</td><td>—</td><td>26</td><td>🔧</td><td><span class="badge badge-fail">❌ High</span></td></tr>
-  <tr><td>page_014.html</td><td>26</td><td>—</td><td>—</td><td>—</td><td>—</td><td>26</td><td>🔧</td><td><span class="badge badge-fail">❌ High</span></td></tr>
-  <tr><td>page_015.html</td><td>26</td><td>—</td><td>—</td><td>—</td><td>—</td><td>26</td><td>🔧</td><td><span class="badge badge-fail">❌ High</span></td></tr>
-  <tr><td>page_016.html</td><td>26</td><td>—</td><td>—</td><td>—</td><td>—</td><td>26</td><td>🔧</td><td><span class="badge badge-fail">❌ High</span></td></tr>
-  <tr><td>page_017.html</td><td>26</td><td>—</td><td>—</td><td>—</td><td>—</td><td>26</td><td>🔧</td><td><span class="badge badge-fail">❌ High</span></td></tr>
-  <tr><td>page_018.html</td><td>26</td><td>—</td><td>—</td><td>—</td><td>—</td><td>26</td><td>🔧</td><td><span class="badge badge-fail">❌ High</span></td></tr>
-  <tr><td>page_019.html</td><td>26</td><td>—</td><td>—</td><td>—</td><td>—</td><td>26</td><td>🔧</td><td><span class="badge badge-fail">❌ High</span></td></tr>
-  <tr><td>page_020.html</td><td>26</td><td>—</td><td>—</td><td>—</td><td>—</td><td>26</td><td>🔧</td><td><span class="badge badge-fail">❌ High</span></td></tr>
-  </tbody></table>
-<footer><p>Generated by <a href="https://github.com/turbolego/wcag-skill">wcag-skill</a> · <a href="https://github.com/kveita/wcag-test-pages">kveita/wcag-test-pages</a></p></footer>
+<!-- Results Table -->
+<div class="panel">
+  <h2>Individual Page Results</h2>
+  <div id="results-table"></div>
+</div>
+
+<footer>
+  <p>Generated by <a href="https://github.com/turbolego/wcag-skill">wcag-skill</a> ·
+     <a href="https://github.com/kveita/wcag-test-pages">kveita/wcag-test-pages</a> ·
+     Charts via <a href="https://github.com/Leonxlnx/taste-skill">taste-skill</a></p>
+</footer>
+
+</main>
+
+<script src="charts.js"></script>
 <script>
-const iterDates = ["2026-10-29T04:00:00Z"];
-const iterData = [5800];
-const wcagLabels = ["Contrast", "Contrast AAA", "Color-Only", "Image/Label", "Form Label", "Justify", "Table Layout", "Text Spacing", "Link Purpose", "Keyboard", "Touch Target", "Heading/Table", "Language", "ARIA Live", "Focus Visible", "Focus Trap", "Autoplay", "Motion", "Captions", "Zoom"];
-const wcagColors = ["#e74c3c", "#e67e22", "#f1c40f", "#2ecc71", "#1abc9c", "#3498db", "#9b59b6", "#e91e63", "#00bcd4", "#ff5722", "#673ab7", "#8bc34a", "#ff9800", "#4caf50", "#795548"];
-const typeCounts = {"Color/Contrast": 0, "Color-Only": 0, "Image": 0, "Link": 0, "Form": 0, "Heading": 0, "Table": 0, "Motion": 0, "Text": 0, "Layout": 0, "Keyboard": 0, "ARIA": 0, "Language": 0, "Scrolling": 0, "Media": 0, "Screen Reader": 0};
-const allTypeNames = ["Color/Contrast", "Color-Only", "Image", "Link", "Form", "Heading", "Table", "Motion", "Text", "Layout", "Keyboard", "ARIA", "Language", "Scrolling", "Media", "Screen Reader"];
-const pageLabels = ["page_001", "page_002", "page_003", "page_004", "page_005", "page_006", "page_007", "page_008", "page_009", "page_010", "page_011", "page_012", "page_013", "page_014", "page_015"];
-const pageIterData = [[26], [26], [26], [26], [26], [26], [26], [26], [26], [26], [26], [26], [26], [26], [26]];
+// Data fetched from reports/_stats/manifest.json
+fetch('reports/_stats/manifest.json')
+  .then(r => r.json())
+  .then(manifest => {
+    const runs = manifest.runs || [];
+    const latest = runs[runs.length - 1] || { per_page: {}, total_violations: 0, total_pages: 0 };
+    const perPage = latest.per_page || {};
+    const pageCount = Object.keys(perPage).length;
 
-new Chart(document.getElementById('iterationChart'),{
-  type:'line',data:{labels:iterDates.map(d=>d.split('T')[0]),datasets:[{label:'Total Violations',data:iterData,borderColor:'#e74c3c',backgroundColor:'rgba(231,76,60,0.1)',tension:.3,fill:true}]},
-  options:{responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{{label:ctx=>`Total: ${{ctx.parsed.y}} violations`}}}},scales:{y:{beginAtZero:true,ticks:{stepSize:5},title:{display:true,text:'Total Violations'}}}}}
-}});
+    // KPIs
+    const totalViolations = latest.total_violations || 0;
+    const avgViolations = pageCount ? totalViolations / pageCount : 0;
+    const pagesZero = Object.values(perPage).filter(p => (p.actual || []).length === 0).length;
+    const pagesHard = Object.values(perPage).filter(p => (p.actual || []).length >= 4).length;
+    const maxV = Math.max(0, ...Object.values(perPage).map(p => (p.actual || []).length));
 
-new Chart(document.getElementById('wcagChart'),{
-  type:'bar',data:{labels:wcagLabels.filter((v,i)=>typeCounts[Object.keys(typeCounts)[i]]>0),datasets:[{label:'Count',data:wcagLabels.filter((v,i)=>typeCounts[Object.keys(typeCounts)[i]]>0).map((_,i)=>Object.values(typeCounts)[i]),backgroundColor:wcagColors,borderWidth:1}]},
-  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{{label:ctx=>`${{ctx.parsed.y}} pages`}}}},scales:{y:{beginAtZero:true,ticks:{stepSize:1},title:{display:true,text:'Number of Pages'}}}}}}
-}});
+    document.getElementById('kpi-pages').textContent = pageCount.toLocaleString();
+    document.getElementById('kpi-violations').textContent = totalViolations.toLocaleString();
+    document.getElementById('kpi-avg').textContent = avgViolations.toFixed(1);
+    document.getElementById('kpi-fixed').textContent = pageCount.toLocaleString();
 
-new Chart(document.getElementById('typeChart'),{
-  type:'bar',data:{labels:allTypeNames.filter(t=>typeCounts[t]>0),datasets:[{label:'Count',data:allTypeNames.filter(t=>typeCounts[t]>0).map(t=>typeCounts[t]),backgroundColor:allTypeNames.filter(t=>typeCounts[t]>0).map((_,i)=>wcagColors[i%15]),borderWidth:1}]},
-  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{{label:ctx=>`${{ctx.parsed.y}} pages`}}}},scales:{y:{beginAtZero:true,ticks:{stepSize:1},title:{display:true,text:'Number of Pages'}}}}}}
-}});
+    // Type counts
+    const TYPE_MAP = {
+      'color-no-contrast': 'Contrast',
+      'color-red-green': 'Color-Only',
+      'color-gray-light': 'Contrast',
+      'img-decorative-missing-alt': 'Image/Label',
+      'img-meaningless-alt': 'Image/Label',
+      'img-no-alt-description': 'Image/Label',
+      'link-placeholder': 'Link',
+      'link-empty-href': 'Link',
+      'form-label-missing': 'Form',
+      'form-placeholder-only': 'Form',
+      'form-error-color-only': 'Form',
+      'form-input-id-mismatch': 'Form',
+      'heading-skip': 'Heading',
+      'heading-missing': 'Heading',
+      'table-layout': 'Table',
+      'table-layout-fixed': 'Table',
+      'table-complex': 'Table',
+      'text-small': 'Text',
+      'text-justified': 'Text',
+      'text-spaced': 'Text',
+      'text-no-line-height': 'Text',
+      'layout-fixed-width': 'Layout',
+      'layout-no-zoom': 'Layout',
+      'keyboard-focus-invisible': 'Keyboard',
+      'script-keyboard-missing': 'Keyboard',
+      'aria-live-overflow': 'ARIA',
+      'aria-hidden-live': 'ARIA',
+      'sr-decorative-role': 'ARIA',
+      'language-unset': 'Language',
+      'scroll-blocked': 'Scroll',
+      'scroll-small-target': 'Scroll',
+      'motion-flash': 'Motion',
+      'motion-parallax': 'Motion',
+      'motion-autoplay-video': 'Media',
+      'audio-autoplay': 'Media',
+      'audio-decorative-silent': 'Media',
+      'video-auto-caption': 'Media',
+    };
 
-new Chart(document.getElementById('improvementChart'),{
-  type:'line',data:{labels:iterDates.map(d=>d.split('T')[0]),datasets:pageIterData.map((counts,i)=>({label:pageLabels[i],data:counts,borderColor:wcagColors[i%15],tension:.3,pointRadius:2}))},
-  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:'top'},tooltip:{callbacks:{{label:ctx=>`${{ctx.dataset.label}}: ${{ctx.parsed.y}} violations`}}}},scales:{x:{ticks:{maxRotation:90,minRotation:45,font:{size:10}}},y:{beginAtZero:true,ticks:{stepSize:1},title:{display:true,text:'Violations'}}}}}
-}});
-</script></body></html>
+    const typeCounts = {};
+    const wcagCounts = {};
+    for (const pid of Object.keys(perPage)) {
+      for (const v of (perPage[pid].actual || [])) {
+        const displayName = TYPE_MAP[v.type] || v.type;
+        typeCounts[displayName] = (typeCounts[displayName] || 0) + 1;
+        for (const rule of (v.wcag || [])) {
+          wcagCounts[rule] = (wcagCounts[rule] || 0) + 1;
+        }
+      }
+    }
+
+    // Sort types by count desc
+    const sortedTypes = Object.entries(typeCounts).sort((a, b) => b[1] - a[1]).slice(0, 10);
+    const sortedWcag = Object.entries(wcagCounts).sort((a, b) => b[1] - a[1]).slice(0, 10);
+
+    // ---- taste-skill SVG charts ----
+    if (typeof Charts !== 'undefined') {
+      // 1. Iteration chart
+      if (runs.length >= 1) {
+        const dates = runs.map(r => (r.date || '').split('T')[0]);
+        const totals = [];
+        let cum = 0;
+        for (const r of runs) { cum += r.total_violations || 0; totals.push(cum); }
+        Charts.line(document.getElementById('iterationChart'), {
+          labels: dates,
+          series: [{ name: 'Cumulative violations', values: totals }],
+          format: Charts.fmt.int
+        });
+      } else {
+        Charts.line(document.getElementById('iterationChart'), {
+          labels: ['No data'], series: [{ name: 'Violations', values: [0] }]
+        });
+      }
+
+      // 2. WCAG criteria bar chart (horizontal bars via barList)
+      Charts.barList(document.getElementById('wcagChart'),
+        sortedWcag.map(([rule, count]) => ({ label: rule, value: count })),
+        { format: Charts.fmt.int }
+      );
+
+      // 3. Type bar chart
+      Charts.barList(document.getElementById('typeChart'),
+        sortedTypes.map(([name, count]) => ({ label: name, value: count })),
+        { format: Charts.fmt.int }
+      );
+
+      // 4. Improvement chart (top 15 pages by violation count)
+      const topPages = Object.entries(perPage)
+        .map(([pid, p]) => ({ label: `page_${pid}`, value: (p.actual || []).length }))
+        .sort((a, b) => b.value - a.value)
+        .slice(0, 15);
+      Charts.barList(document.getElementById('improvementChart'),
+        topPages.map(p => ({ label: p.label, value: p.value })),
+        { format: Charts.fmt.int, thin: true }
+      );
+    }
+
+    // Results table
+    const tableWrap = document.getElementById('results-table');
+    const allPids = Object.keys(perPage).sort();
+    let html = '<table class="results"><thead><tr><th>Page</th><th>Violations</th><th>WCAG</th><th>Status</th></tr></thead><tbody>';
+    for (const pid of allPids.slice(0, 50)) {
+      const p = perPage[pid];
+      const count = (p.actual || []).length;
+      const wcagRules = [...new Set((p.actual || []).flatMap(v => v.wcag || []))];
+      let badge;
+      if (count === 0) badge = '<span class="badge badge-pass">Clean</span>';
+      else if (count >= 4) badge = '<span class="badge badge-fail">High</span>';
+      else if (count >= 2) badge = '<span class="badge badge-warn">Med</span>';
+      else badge = '<span class="badge badge-pass">Low</span>';
+      html += `<tr><td>page_${pid}</td><td>${count}</td><td>${wcagRules.join(', ') || '—'}</td><td>${badge}</td></tr>`;
+    }
+    if (allPids.length > 50) {
+      html += `<tr><td colspan="4" style="color:var(--muted);">…and ${allPids.length - 50} more pages</td></tr>`;
+    }
+    html += '</tbody></table>';
+    tableWrap.innerHTML = html;
+  })
+  .catch(err => {
+    console.error('Failed to load manifest:', err);
+    document.body.insertAdjacentHTML('beforeend',
+      '<p style="text-align:center;color:#c4242a;padding:40px">Could not load audit data. Please run <code>python build.py</code> first.</p>'
+    );
+  });
+</script>
+</body>
+</html>
