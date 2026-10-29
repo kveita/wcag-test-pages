@@ -1,0 +1,38 @@
+name: Pages build and deployment
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages-build-${{ github.ref }}"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      - uses: actions/configure-pages@v5
+        with:
+          static_site_generator: none
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./
+          retention-days: 1
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
