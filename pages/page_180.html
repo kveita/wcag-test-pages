@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WCAG Test Page 180</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.5;
+            color: #f39c12;
+            background-color: #ffffff;
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        /* Random bad patterns */
+        .contrast-red-on-red { background-color: #f39c12; color: #f39c12; padding: 20px; margin: 10px 0; }
+        .contrast-gray-on-white { background-color: #ffffff; color: #a0a0a0; padding: 20px; }
+        .color-only {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .color-pill {
+            padding: 8px 16px;
+            border-radius: 4px;
+            color: #fff;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .color-pill.neutral { background-color: #666666; }
+        .color-pill.go { background-color: #2ecc71; }
+        .color-pill.stop { background-color: #e74c3c; }
+        .img-issue {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .link-placeholder {
+            color: #f39c12;
+            text-decoration: none;
+            border-bottom: 1px dotted #f39c12;
+        }
+        .link-placeholder:hover {
+            text-decoration: underline;
+        }
+        .form-issue {
+            margin: 15px 0;
+        }
+        .form-issue input {
+            border: 1px solid #f39c12;
+            padding: 8px;
+            border-radius: 4px;
+        }
+        .form-issue label {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>WCAG Test Page 180</h1>
+    <p>This page contains accessibility violations for testing.</p>
+    <div class="contrast-red-on-red">Red text on red background</div>
+    <div class="contrast-gray-on-white">Gray text on white background</div>
+    <div class="color-only">
+        <div class="color-pill neutral">Neutral</div>
+        <div class="color-pill go">Go</div>
+        <div class="color-pill stop">Stop</div>
+    </div>
+    <div class="img-issue">
+        <img src="https://via.placeholder.com/150" alt="image">
+    </div>
+    <a href="#" class="link-placeholder">Click here for more info</a>
+    <div class="form-issue">
+        <input type="text" placeholder="Enter your name">
+    </div>
+    <script>
+        window.__wcag_test_page = {
+            violations: [
+                {"type": "Table", "desc": "Table has width='100%' and content is squished, breaking readability", "wcag": ["1.4.10"], "fix": "Remove fixed width or allow content wrapping."},
+                {"type": "Form", "desc": "Input field with no associated label or aria-label", "wcag": ["1.1.1", "4.1.2"], "fix": "Add <label> or aria-label='Search products'."},
+                {"type": "Color-Only", "desc": "Action buttons use only red vs green to distinguish, no icon or text label", "wcag": ["1.4.1"], "fix": "Add text labels like 'Delete'/'Save' or icons alongside colors."},
+                {"type": "Scrolling", "desc": "Large page with tiny in-page navigation links (under 44x44px)", "wcag": ["2.5.5"], "fix": "Increase clickable areas to at least 44x44 CSS px."},
+                {"type": "Media", "desc": "Autoplayed sound is purely decorative but cannot be stopped", "wcag": ["1.4.2"], "fix": "Stop the sound or let users disable it."}
+            ]
+        };
+    </script>
+</body>
+</html>
