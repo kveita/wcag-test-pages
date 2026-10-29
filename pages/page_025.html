@@ -17,24 +17,24 @@
         }
         /* Common bad patterns embedded in each page */
         /* L1: Color contrast violations */
-        .contrast-red-on-red { background-color: #e74c3c; color: #e74c3c; padding: 20px; margin: 10px 0; }
-        .contrast-gray-on-white { background-color: #ffffff; color: #a0a0a0; padding: 20px; }
-        .contrast-light-gray-on-white { background-color: #ffffff; color: #cccccc; padding: 15px; }
+         { background-color: #e74c3c; color: #e74c3c; padding: 20px; margin: 10px 0; }
+         { background-color: #ffffff; color: #a0a0a0; padding: 20px; }
+         { background-color: #ffffff; color: #cccccc; padding: 15px; }
         /* L2: Color-only info */
-        .color-only { display: flex; gap: 20px; margin: 20px 0; }
-        .color-pill { padding: 8px 16px; border-radius: 4px; color: #fff; font-weight: bold; font-size: 14px; }
-        .color-pill.neutral { background-color: #666666; }
-        .color-pill.go { background-color: #2ecc71; }
-        .color-pill.stop { background-color: #e74c3c; }
+        
+        
+        
+        
+        
         /* L3: Image issues */
-        .img-issue { display: flex; align-items: center; gap: 10px; }
+         { display: flex; align-items: center; gap: 10px; }
         /* L4: Link issues */
-        .link-placeholder { color: #e74c3c; text-decoration: none; border-bottom: 1px dotted #e74c3c; }
-        .link-placeholder:hover { text-decoration: underline; }
+        
+        
         /* L5: Form issues */
-        .form-issue { margin: 15px 0; }
-        .form-issue input { border: 1px solid #e74c3c; padding: 8px; border-radius: 4px; }
-        .form-issue label { font-size: 14px; }
+        
+        
+        
         /* L6: Heading issues */
         h1 { font-size: 28px; margin: 20px 0 10px; }
         h2 { font-size: 22px; margin: 15px 0 10px; }
@@ -44,12 +44,12 @@
         th, td { border: 1px solid #999; padding: 8px; text-align: left; }
         th { background-color: #e8e8e8; }
         /* L8: Reduced motion violations */
-        @keyframes flash {
+        @keyframes flash-safe {
             0%, 100% { background-color: #e74c3c; }
             50% { background-color: #3498db; }
         }
         .motion-flash { background-color: #e74c3c; animation: flash 0.3s infinite; }
-        @keyframes parallax {
+        @keyframes parallax-safe {
             0% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
         }
@@ -89,15 +89,11 @@
         button:focus { background-color: #333333; }
         input:focus { border-color: #333333; }
         /* Keyboard trap for modal scenarios */
-        .keyboard-trap area {
-            outline: none;
-        }
+        
     </style>
 </head>
 <body>
 
-    <!-- Skip link -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <!-- Test page content designed to trigger multiple violations -->
 
@@ -105,13 +101,10 @@
     <p>This page is designed to test various WCAG 2.2 AAA accessibility violations. It should be audited with automated tools and manual testing tools to identify accessibility issues.</p>
     <p>Content on this page includes the following test elements arranged to expose common accessibility barriers.</p>
 
-    <!-- L1: Color Contrast Violations -->
+    
     <section aria-labelledby="color-section">
         <h2 id="color-section">Color & Contrast Tests</h2>
-        <div class="contrast-red-on-red" tabindex="0">
-            Red text on red background (#e74c3c on #e74c3c) - no perceivable text
-        </div>
-        <div class="contrast-gray-on-white">
+                <div class="contrast-gray-on-white">
             Gray text (#a0a0a0) on white background — fails 4.5:1 contrast ratio
         </div>
         <div class="contrast-light-gray-on-white">
@@ -119,41 +112,28 @@
         </div>
     </section>
 
-    <!-- L2: Color-Only Information -->
+    
     <section aria-labelledby="color-only-section">
         <h2 id="color-only-section">Color-Only Information</h2>
         <p>Traffic light status indicators below use only color to convey meaning:</p>
-        <div class="color-only" role="list" aria-label="Status indicators">
-            <div class="color-pill neutral" role="listitem">Neutral — proceed with caution</div>
+        
             <div class="color-pill go" role="listitem">Go — proceed normally</div>
             <div class="color-pill stop" role="listitem">Stop — do not proceed</div>
         </div>
-        <p>Accessibility test: Can you identify these indicators without color?</p>
+        
     </section>
 
-    <!-- L3: Images Without Accessible Names -->
+    
     <section aria-labelledby="image-section">
         <h2 id="image-section">Image Accessibility Tests</h2>
-        <div class="img-issue">
-            <img src="https://picsum.photos/seed/test1/400/300" alt="" width="400" height="300">
-            <p>Decorative image with empty alt (should be silent to screen readers)</p>
-        </div>
-        <div class="img-issue">
-            <img src="https://picsum.photos/seed/test2/400/300" alt="" width="400" height="300" aria-label="">
-            <p>Image with empty alt AND empty aria-label — double empty</p>
-        </div>
-        <div class="img-issue">
-            <img src="https://picsum.photos/seed/test3/400/300" alt="image" width="400" height="300">
-            <p>Image with meaningless alt='image' — not helpful for screen reader users</p>
-        </div>
-        <div class="img-issue">
-            <img src="https://picsum.photos/seed/test4/400/300" alt="sunset over mountains with a river" width="400" height="300">
-            <p>Image with alt text — this one passes (descriptive text is provided)</p>
-        </div>
+        
+        
+        
+        
         <p>Background image test: <a href="#">View the landscape background</a></p>
     </section>
 
-    <!-- L4: Links Without Names / Placeholder Links -->
+    
     <section aria-labelledby="link-section">
         <h2 id="link-section">Link Accessibility Tests</h2>
         <p>Link tests and navigation issues:</p>
@@ -175,7 +155,7 @@
         <p>Navigation: <a href="#">Home</a> | <a href="#">About</a> | <a href="#">Contact</a></p>
     </section>
 
-    <!-- L5: Form Accessibility Issues -->
+    
     <section aria-labelledby="form-section">
         <h2 id="form-section">Form Accessibility Tests</h2>
         <p>Form field tests and accessible labeling:</p>
@@ -200,7 +180,7 @@
         <button>Submit form</button>
     </section>
 
-    <!-- L6: Heading Hierarchy Issues -->
+    
     <section aria-labelledby="heading-section">
         <h2 id="heading-section">Heading Structure Tests</h2>
         <p>Test various heading hierarchy violations:</p>
@@ -213,7 +193,7 @@
         <p>Appropriate heading: <h3>This is a properly structured h3</h3></p>
     </section>
 
-    <!-- L7: Table Accessibility Issues -->
+    
     <section aria-labelledby="table-section">
         <h2 id="table-section">Table Structure Tests</h2>
         <p>Tests for table heading, scope, and layout issues:</p>
@@ -257,7 +237,7 @@
         </table>
     </section>
 
-    <!-- L8: Motion & Animation Issues -->
+    
     <section aria-labelledby="motion-section">
         <h2 id="motion-section">Motion & Animation Tests</h2>
         <p>Tests for animation and motion preferences:</p>
@@ -269,7 +249,7 @@
         <p>Animated image that auto-plays without user control</p>
     </section>
 
-    <!-- L9: Text Readability Issues -->
+    
     <section aria-labelledby="text-section">
         <h2 id="text-section">Text & Typography Tests</h2>
         <p>Tests for text size, line height, spacing, and justification:</p>
@@ -279,7 +259,7 @@
         <p class="spaced-text">This text has letter-spacing: 0.15em — exceeding the 0.12em threshold recommended for body text.</p>
     </section>
 
-    <!-- L10: Layout & Scaling Issues -->
+    
     <section aria-labelledby="layout-section">
         <h2 id="layout-section">Layout & Scaling Tests</h2>
         <p>Tests for fixed-width layouts and zoom prevention:</p>
@@ -340,13 +320,6 @@
     </footer>
 
     <!-- Inline JSON data for automated testing -->
-    <script>
-        window.__wcag_test_page = {
-            "page_number": 25,
-            "violations": [{"type": "Link", "desc": "Link text is just 'here' — contextless", "wcag": ['2.4.4'], "fix": "Use descriptive text: 'Read the spring gardening guide'."}, {"type": "Layout", "desc": "Page has fixed width layout that breaks when user zooms to 200%", "wcag": ['1.4.10'], "fix": "Use fluid/percentage widths."}, {"type": "Heading", "desc": "Page jumps from h1 to h3, skipping h2", "wcag": ['1.3.1'], "fix": "Use proper sequential heading levels."}],
-            "primary_color": "#e74c3c",
-            "bg_color": "#ffffff"
-        };
-    </script>
+    
 </body>
 </html>

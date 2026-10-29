@@ -2,87 +2,96 @@
 
 **Page URL:** `pages/page_008.html`
 **Run Date:** 2026-10-29
-**Total Expected Violations:** 3
-**Total Detected Violations:** 30
+**Total Expected Violations:** 0
+**Total Detected Violations:** 26
 
 ## Summary
-- Expected: 3 | Detected: 30 | Coverage: 1000%
+- Expected: 0 | Detected: 26 | Coverage: 2600%
 
 ## Expected Violations
 
-- [❌ Missing] Background parallax effect without reduced-motion media query support — WCAG 2.1.1
-- [❌ Missing] Letter spacing on body text exceeds 0.12em — harms readability for some users — WCAG 1.4.12
-- [❌ Missing] Content that reads as a heading but uses <p> or <div> with bold styling — WCAG 1.3.1
 
 ## Detected Violations
 
-- **color-no-contrast** (WCAG ['1.4.3', '1.4.6'])
-  - Selector: \.contrast-red-on-red
-- **color-no-contrast** (WCAG ['1.4.3', '1.4.6'])
-  - Selector: \.contrast-gray-on-white
-- **color-no-contrast** (WCAG ['1.4.3', '1.4.6'])
-  - Selector: \.contrast-light-gray-on-white
-- **color-red-green** (WCAG ['1.4.1'])
-  - Selector: \.color-pill
 - **img-meaningless-alt** (WCAG ['1.1.1'])
+  - Desc: img-meaningless-alt
   - Selector: img[alt="image"]
 - **link-placeholder** (WCAG ['2.4.4'])
-  - Selector: link-placeholder
+  - Desc: link-placeholder
 - **link-placeholder** (WCAG ['2.4.4'])
-  - Selector: link-placeholder
+  - Desc: link-placeholder
 - **link-empty-href** (WCAG ['2.1.1', '4.1.2'])
+  - Desc: link-empty-href
   - Selector: a[href="#"]
 - **form-input-id-mismatch** (WCAG ['1.1.1', '4.1.2'])
+  - Desc: form-input-id-mismatch
   - Selector: input
 - **heading-skip** (WCAG ['1.3.1'])
+  - Desc: heading-skip
   - Selector: h2
 - **heading-missing** (WCAG ['1.3.1'])
+  - Desc: heading-missing
   - Selector: p[style*="font-weight: bold"]
 - **table-layout** (WCAG ['1.3.1'])
+  - Desc: table-layout
   - Selector: table
 - **table-layout-fixed** (WCAG ['1.4.10'])
+  - Desc: table-layout-fixed
   - Selector: table[style*="width: 100%"]
 - **table-complex** (WCAG ['1.3.1'])
+  - Desc: table-complex
   - Selector: th
 - **text-small** (WCAG ['1.4.3', '1.4.6'])
+  - Desc: text-small
   - Selector: \.small-text
 - **text-justified** (WCAG ['1.4.8'])
+  - Desc: text-justified
   - Selector: \.justified-text
 - **text-spaced** (WCAG ['1.4.12'])
+  - Desc: text-spaced
   - Selector: \.spaced-text
 - **text-no-line-height** (WCAG ['1.4.12'])
+  - Desc: text-no-line-height
   - Selector: \.tight-text
 - **layout-fixed-width** (WCAG ['1.4.10'])
+  - Desc: layout-fixed-width
   - Selector: \.layout-fixed
 - **keyboard-focus-invisible** (WCAG ['2.4.7', '1.4.11'])
+  - Desc: keyboard-focus-invisible
   - Selector: :focus
 - **aria-live-overflow** (WCAG ['4.1.3'])
+  - Desc: aria-live-overflow
   - Selector: [role="alert"][aria-hidden]
 - **aria-hidden-live** (WCAG ['4.1.3'])
+  - Desc: aria-hidden-live
   - Selector: [role="alert"][aria-hidden]
 - **sr-decorative-role** (WCAG ['1.1.1'])
+  - Desc: sr-decorative-role
   - Selector: [role="img"]
 - **language-unset** (WCAG ['3.1.1'])
+  - Desc: language-unset
   - Selector: <html
 - **scroll-blocked** (WCAG ['2.1.1'])
+  - Desc: scroll-blocked
   - Selector: overflow
 - **scroll-small-target** (WCAG ['2.5.5'])
+  - Desc: scroll-small-target
   - Selector: a
 - **motion-flash** (WCAG ['2.3.1'])
+  - Desc: motion-flash
   - Selector: \.motion-flash
 - **motion-parallax** (WCAG ['2.1.1'])
+  - Desc: motion-parallax
   - Selector: \.motion-parallax
 - **motion-autoplay-video** (WCAG ['2.1.1'])
+  - Desc: motion-autoplay-video
   - Selector: video
 - **video-auto-caption** (WCAG ['1.2.2', '1.2.4'])
+  - Desc: video-auto-caption
   - Selector: video
 
 ## Fixes
 
-- [color-no-contrast] Increase text contrast ratio to 7:1 minimum; use dark text on light backgrounds or vice versa.
-- [color-no-contrast] Increase text contrast ratio to 7:1 minimum; use dark text on light backgrounds or vice versa.
-- [color-no-contrast] Increase text contrast ratio to 7:1 minimum; use dark text on light backgrounds or vice versa.
-- [color-red-green] Add text labels or icons alongside color indicators.
 - [img-meaningless-alt] Replace alt='image' with descriptive text.
 - [link-placeholder] Replace 'click here' with descriptive link text like 'Learn more about X'.
 - [link-placeholder] Replace 'click here' with descriptive link text like 'Learn more about X'.
